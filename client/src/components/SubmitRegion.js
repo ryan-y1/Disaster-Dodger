@@ -89,9 +89,10 @@ function SubmitRegion() {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({ region })
-                    }).then(() => {
-                        console.log('recieved! ' + response)
                     })
+                    if (response.ok) {
+                      console.log(response)
+                    }
                 }}
                 >Search</Button>
         </div>

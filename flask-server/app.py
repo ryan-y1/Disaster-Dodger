@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -7,7 +6,7 @@ app = Flask(__name__)
 def index():
     return "Bonjour Tout Le Monde"
 
-@app.route("/searchRegion", methods={"Post"})
+@app.route("/searchRegion", methods={"POST"})
 def process_json():
     content_type = request.headers.get('Content-Type')
     if (content_type == 'application/json'):
