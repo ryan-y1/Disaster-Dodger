@@ -2,8 +2,7 @@ import logo from './logo.svg';
 import React, { useState, useEffect } from 'react'
 import './App.css';
 
-import RegionDropdown from './components/RegionDropdown';
-import ConfirmRegionButton from './components/ConfirmRegionButton';
+import SubmitRegion from './components/SubmitRegion';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { Typography } from '@mui/material';
@@ -11,7 +10,7 @@ import { Typography } from '@mui/material';
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#ffffff"
+      main: "#b89986"
     },
     secondary: {
       main: "#ffffff"
@@ -30,10 +29,7 @@ function App() {
       <div className='app'>
       <section className='main'>
         <Typography variant='h1'>Disaster Buddy</Typography>
-        <div className='form'>
-          <RegionDropdown />
-          <ConfirmRegionButton />
-        </div>
+        <SubmitRegion/>
       </section>
       <div className='sub'>
 

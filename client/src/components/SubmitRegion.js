@@ -1,8 +1,9 @@
 import React from 'react'
+import Button from '@mui/material/Button'
 import Select from '@mui/material/Select'
 import { MenuItem } from '@mui/material'
 
-function RegionDropdown() {
+function SubmitRegion() {
     const [region, setRegion] = React.useState('')
 
     const USStateList = [
@@ -61,21 +62,41 @@ function RegionDropdown() {
     const handleChange = (event) => {
         setRegion(event.target.value)
     }
-    
+
     return (
-        <Select 
-            value={region}
-            onChange={handleChange}
-            color="primary"
-            sx={{
-                width: "300px"
-            }}
-        >
+        <div className='form'>
+            <Select 
+                value={region}
+                onChange={handleChange}
+                color="primary"
+                sx={{
+                    width: "300px"
+                }}
+            >
             {USStateList.map(e => {
-                return <MenuItem value={e}>{e}</MenuItem>
+                return <MenuItem 
+                            value={e}
+                            key={e}
+                        >{e}</MenuItem>
             })}
-        </Select>
+            </Select>
+            <Button 
+                variant='contained'
+                onClick={ async () => {
+                    const response = await fetch('/searchRegion', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ region })
+                    }).then(() => {
+                        console.log('recieved! ' + response)
+                    })
+                }}
+                >Search</Button>
+        </div>
     )
+    
 }
 
-export default RegionDropdown
+export default SubmitRegion
