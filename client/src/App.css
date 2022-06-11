@@ -14,6 +14,10 @@
   width: 500px;
   display: flex;
   justify-content: space-evenly;
+  background-color: aliceblue;
+  padding: 1rem;
+  margin: 2rem;
+  border-radius: 25px;
 }
 .app .sub {
   background-color: wheat;
