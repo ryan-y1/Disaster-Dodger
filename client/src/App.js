@@ -6,6 +6,7 @@ import RegionDropdown from './components/RegionDropdown';
 import ConfirmRegionButton from './components/ConfirmRegionButton';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { Typography } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -28,7 +29,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className='app'>
       <section className='main'>
-        <h1>Disaster Buddy</h1>
+        <Typography variant='h1'>Disaster Buddy</Typography>
         <div className='form'>
           <RegionDropdown />
           <ConfirmRegionButton />
