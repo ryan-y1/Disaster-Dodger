@@ -35,7 +35,7 @@ function App() {
             speed={1.3}
           >
             <section className='main'>
-              <Typography variant='h1'>Disaster Buddy</Typography>
+              <Typography variant='h1'>Disaster Dodger</Typography>
               <SubmitRegion setTrigger={setInfoActivate}/>
             </section>
           </ParallaxLayer>
