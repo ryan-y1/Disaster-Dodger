@@ -4,6 +4,7 @@ import './App.css';
 
 import SubmitRegion from './components/SubmitRegion';
 import DisasterInfo from './components/DisasterInfo';
+import logo from './images/Logo_transparent.png'
 
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { Typography } from '@mui/material';
@@ -35,8 +36,18 @@ function App() {
             speed={1.3}
           >
             <section className='main'>
-              <Typography variant='h1'>Disaster Dodger</Typography>
-              <SubmitRegion setTrigger={setInfoActivate}/>
+              <div style={{
+                display: "inline-flex",
+                alignItems: "center"
+              }}>
+                <img
+                  src={logo}
+                  alt=''
+                  className='logo'
+                />
+                <Typography variant='h1'>Disaster Dodger</Typography>
+              </div>
+              <SubmitRegion setTrigger={setInfoActivate} />
             </section>
           </ParallaxLayer>
           <ParallaxLayer 

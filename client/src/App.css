@@ -1,5 +1,5 @@
 .app .main {
-  background-color: rgb(46, 46, 46);
+  background-color: rgb(243, 239, 234);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,16 +8,22 @@
 }
 .app .main h1 {
   font-size: 100px;
-  color: white;
+  color: rgb(32, 32, 32);
+  z-index: 2;
 }
 .app .main .form {
   width: 500px;
   display: flex;
   justify-content: space-evenly;
-  background-color: aliceblue;
+  background-color: rgb(223, 142, 95);
   padding: 1rem;
   margin: 2rem;
   border-radius: 25px;
+  z-index: 2;
+}
+.app .main .logo {
+  width: auto;
+  height: 175px;
 }
 .app .infoDiv {
   background-color: wheat;
