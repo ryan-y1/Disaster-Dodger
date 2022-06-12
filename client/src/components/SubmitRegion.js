@@ -3,7 +3,7 @@ import Button from '@mui/material/Button'
 import Select from '@mui/material/Select'
 import { MenuItem } from '@mui/material'
 
-function SubmitRegion() {
+function SubmitRegion(props) {
     const [region, setRegion] = React.useState('')
 
     const USStateList = [
@@ -82,17 +82,17 @@ function SubmitRegion() {
             </Select>
             <Button 
                 variant='contained'
-                onClick={ async () => {
-                    const response = await fetch('/searchRegion', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ region })
-                    })
-                    if (response.ok) {
-                      console.log(response)
-                    }
+                // onClick={ async () => {
+                //     console.log(await fetch('/searchRegion', { 
+                //         method: 'POST',
+                //         headers: {
+                //             'Content-Type': 'application/json'
+                //         },
+                //         body: JSON.stringify({ region })
+                //     }))
+                // }}
+                onClick={() => {
+                    props.setTrigger(true)
                 }}
                 >Search</Button>
         </div>
