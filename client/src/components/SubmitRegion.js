@@ -82,18 +82,21 @@ function SubmitRegion(props) {
             </Select>
             <Button 
                 variant='contained'
-                // onClick={ async () => {
-                //     console.log(await fetch('/searchRegion', { 
-                //         method: 'POST',
-                //         headers: {
-                //             'Content-Type': 'application/json'
-                //         },
-                //         body: JSON.stringify({ region })
-                //     }))
-                // }}
-                onClick={() => {
-                    props.setTrigger(true)
+                onClick={ async () => {
+                    const rawResponse = await fetch('/searchRegion', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ region: region })
+                    }).catch(error => console.log(error))
+                    const response = await rawResponse.json();
+                    console.log(response)
                 }}
+                // onClick={() => {
+                //     props.setTrigger(true)
+                // }}
                 >Search</Button>
         </div>
     )
