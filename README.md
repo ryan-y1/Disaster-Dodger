@@ -8,13 +8,15 @@ A convenient website that allows you to select your region to find the most comm
 
 ## Roadmap
 
+We have several future plans for this project.
+
 #### Automatic Supplies Update
 
-System will automatically update listings for emergency supplies and reflect the updates to users
+System will automatically update listings for emergency supplies and reflect the updates to users.
 
 #### User Accounts
 
-Users can receive reminder notifications to replace near-expiratory supplies, such as emergency water and rations
+Users can receive reminder notifications to replace near-expiratory supplies, such as emergency water and rations.
 
 ## Authors
 Han Li: Front End Dev, UX/UI
