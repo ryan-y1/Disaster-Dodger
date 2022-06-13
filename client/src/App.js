@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import './App.css';
 
 import SubmitRegion from './components/SubmitRegion';
@@ -12,10 +11,16 @@ import { Typography } from '@mui/material';
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#b89986"
+      main: "#B5CBB7"
     },
     secondary: {
-      main: "#ffffff"
+      main: "#D2E4C4"
+    },
+    tertiary: {
+      main: "#EC9455"
+    },
+    quaternary: {
+      main: "#E77728"
     }
   },
   typograpghy: {
@@ -27,38 +32,27 @@ const theme = createTheme({
 
 function App() {
   const [infoActivate, setInfoActivate] = useState(false)
+  const [infoFill, setInfoFill] = useState([])
 
   return (
     <ThemeProvider theme={theme}>
-      <Parallax pages={2}>
-        <div className='app'>
-          <ParallaxLayer
-            speed={1.3}
-          >
-            <section className='main'>
-              <div style={{
-                display: "inline-flex",
-                alignItems: "center"
-              }}>
-                <img
-                  src={logo}
-                  alt=''
-                  className='logo'
-                />
-                <Typography variant='h1'>Disaster Dodger</Typography>
-              </div>
-              <SubmitRegion setTrigger={setInfoActivate} />
-            </section>
-          </ParallaxLayer>
-          <ParallaxLayer 
-            offset={0.7}
-            speed={2}
-            factor={1}
-          >
-            <DisasterInfo trigger={infoActivate}/>
-          </ParallaxLayer>
-        </div>
-      </Parallax>
+      <section className='main'>
+          <div style={{
+            display: "inline-flex",
+            alignItems: "center"
+          }}>
+            <img
+              src={logo}
+              alt=''
+              className='logo'
+            />
+            <Typography variant='h1'>Disaster Dodger</Typography>
+          </div>
+          <SubmitRegion setTrigger={setInfoActivate} setInfo={setInfoFill} />
+        </section>
+      <div className='app' id='info'>
+        <DisasterInfo trigger={infoActivate} info={infoFill} />
+      </div>
       <div className='about'>
         <div>
           <div>
@@ -75,6 +69,7 @@ function App() {
           </div>
         </div>
       </div>
+
     </ThemeProvider>
   );
 }

@@ -62,43 +62,46 @@ function SubmitRegion(props) {
     const handleChange = (event) => {
         setRegion(event.target.value)
     }
-
+    
     return (
         <div className='form'>
-            <Select 
+            <Select
                 value={region}
                 onChange={handleChange}
-                color="primary"
                 sx={{
-                    width: "300px"
+                    width: "300px",
+                    backgroundColor: "#e8e5e3"
                 }}
             >
-            {USStateList.map(e => {
-                return <MenuItem 
-                            value={e}
-                            key={e}
-                        >{e}</MenuItem>
-            })}
+                {USStateList.map(e => {
+                    return <MenuItem
+                        value={e}
+                        key={e}
+                    >{e}</MenuItem>
+                })}
             </Select>
-            <Button 
-                variant='contained'
-                onClick={ region !== '' ? async () => {
-                    const rawResponse = await fetch('/searchRegion', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ region: region })
-                    }).catch(error => console.log(error))
-                    const response = await rawResponse.json();
-                    console.log(response)
-                    props.setTrigger(true)
-                } : {}}
+                <Button
+                    variant='contained'
+                    sx={{
+                        backgroundColor: "#e8e5e3"
+                    }}
+                    onClick={region !== '' ? async () => {
+                        const rawResponse = await fetch('/searchRegion', {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ region: region })
+                        }).catch(error => console.log(error))
+                        const response = await rawResponse.json();
+                        props.setInfo(response)
+                        props.setTrigger(true)
+                    } : () => { }}
                 >Search</Button>
         </div>
     )
-    
+
 }
 
 export default SubmitRegion
