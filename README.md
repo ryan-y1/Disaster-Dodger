@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://github.com/ryan-y1/OneHacks-II-Disaster-Kit-Project/blob/main/DisasterDodgerLogo.png" width=50% height=50%/>
-  https://youtu.be/BWOvV83jYs4
 </p>
+<p>https://youtu.be/BWOvV83jYs4</P>
 
 
 # Disaster Dodger
