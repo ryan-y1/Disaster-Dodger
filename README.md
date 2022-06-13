@@ -1,4 +1,9 @@
-![Logo](DisasterDodgerLogo.png)
+<p align="center">
+  <img src="https://github.com/ryan-y1/OneHacks-II-Disaster-Kit-Project/blob/main/DisasterDodgerLogo.png" width=50% height=50%/>
+  <iframe src="https://youtu.be/BWOvV83jYs4"/iframe>
+</p>
+
+
 # Disaster Dodger
 
 Created for MLH's OneHacks II.
