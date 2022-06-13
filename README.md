@@ -1,12 +1,11 @@
 <p align="center">
   <img src="https://github.com/ryan-y1/OneHacks-II-Disaster-Kit-Project/blob/main/DisasterDodgerLogo.png" width=50% height=50%/>
 </p>
-<p>https://youtu.be/BWOvV83jYs4</P>
 
 
 # Disaster Dodger
 
-Created for MLH's OneHacks II.
+Created for MLH's OneHacks II. https://youtu.be/BWOvV83jYs4
 
 ## Description
 
