@@ -5,7 +5,7 @@ Created for MLH's OneHacks II.
 
 ## Description
 
-A convenient website that allows you to select your region to find the most common natural disasters in your area, in order for curated disaster kits to be recommended to you. Currently only available for the United States.
+Our app allows you to select the state you live in to find the most common natural disasters that occur in your area. It then recommends you a curated list of items you need to prepare yourself.
 
 #### Aim
 It is our aim to assist in safer evacuation during potential catastrophe by providing accurate, comprehensive, and accessible information concerning natural disaster preparation.
