@@ -2,49 +2,15 @@ from re import A
 from flask import Flask, request, jsonify
 import requests
 import json
-
+from collections import Counter
+from collections import defaultdict
 #####
-Top_Three=[]
 
 Package = {
   "state": "",
   "disasterList": [
-    {
-      "disasterType": "",
-      "items": [
-        {
-          # Rin is doing the individual item object
-        }
-      ]
-    },
-    {
-      "disasterType": "",
-      "items": [
-        {
-          # Rin is doing the individual item object
-        }
-      ]
-    },
-    {
-      "disasterType": "",
-      "items": [
-        {
-          # Rin is doing the individual item object
-        }
-      ]
-    }
   ]
 }
-
-Hurricane_count = 0
-Flood_count = 0
-Severe_Storm_count = 0
-Earthquake_count = 0
-Severe_Ice_Storm_count = 0
-Coastal_Storm_count = 0
-Fire_count = 0
-Snow_count = 0
-Other_count = 0
 #####
 
 
@@ -52,82 +18,412 @@ Other_count = 0
 app = Flask(__name__)
 
 @app.route("/searchRegion", methods=['POST'])
-def returnTopThreeDisasters():
-    Selected_region = ## NEED TO PUT IN SEL REG
+def searchRegion():
+    
+    highestThree = {
+        "Hurricane_count": 0,
+        "Flood_count": 0,
+        "Severe_Storm_count": 0,
+        "Earthquake_count": 0,
+        "Severe_Ice_Storm_count": 0,
+        "Coastal_Storm_count": 0,
+        "Fire_count": 0,
+        "Snow_count": 0,
+    }
 
+    
+    Selected_region = request.json['region']
 
     response = requests.get("https://www.fema.gov/api/open/v1/FemaWebDisasterDeclarations")
 
     if response.ok == True:
         input_data = response.json()
-
         for i in range(0, len(input_data["FemaWebDisasterDeclarations"])):
             obj = input_data["FemaWebDisasterDeclarations"][i]
             if obj["incidentType"] == "Hurricane" and obj["stateName"] == Selected_region:
-                Hurricane_count += 1
+                highestThree["Hurricane_count"] += 1
             elif obj["incidentType"] == "Flood" and obj["stateName"] == Selected_region:
-                Flood_count += 1
+                highestThree["Flood_count"] += 1
             elif obj["incidentType"] == "Severe Storm(s)" and obj["stateName"] == Selected_region:
-                Severe_Storm_count += 1
+                highestThree["Severe_Storm_count"] += 1
             elif obj["incidentType"] == "Earthquake" and obj["stateName"] == Selected_region:
-                Earthquake_count += 1
+                highestThree["Earthquake_count"] += 1
             elif obj["incidentType"] == "Severe Ice Storm" and obj["stateName"] == Selected_region:
-                Severe_Ice_Storm_count += 1
+                highestThree["Severe_Ice_Storm_count"] += 1
             elif obj["incidentType"] == "Coastal Storm" and obj["stateName"] == Selected_region:
-                Coastal_Storm_count += 1
+                highestThree["Coastal_Storm_count"] += 1
             elif obj["incidentType"] == "Fire" and obj["stateName"] == Selected_region:
-                Fire_count += 1
+                highestThree["Fire_count"] += 1
             elif obj["incidentType"] == "Snow" and obj["stateName"] == Selected_region:
-                Snow_count += 1
-            else:
-                Other_count += 1
+                highestThree["Snow_count"] += 1
 
-    ### NEED TO FILTER OUT FOR TOP 3
-    Top_Three=
+        mostCommon = Counter(highestThree).most_common(3)
+        for i in mostCommon:
+            if i[0] == "Hurricane_count":
+                Package.setdefault("disasterList", []).append({
+                    "disasterType": "Hurricane",
+                    "items": [
+ {
+          "image": "https://m.media-amazon.com/images/I/613LtGZVGML._AC_UX679_.jpg",
+          "name": "Waterproof Ponchos",
+          "text": "Waterproof ponchos protect against wind and rain, and provide warmth."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/61566GUkLFL._AC_SX425_.jpg",
+          "name": "Waterproof Waste Bags",
+          "text": "Waste bags may both protect important items from moisture, and dispose of hazardous waste."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/61yiunepZ3L._AC_SX679_.jpg",
+          "name": "Hand Sanitizer",
+          "text": "Hand sanitizer protects you from diseases by killing germs on your skin."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/71k-8c9TTcL._AC_SX679_.jpg",
+          "name": "Rope",
+          "text": "Rope may be used as a sling in the case of injury, but can also be used to build a shelter by tying materials together."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/91LUqSEpIWL._AC_SX425_.jpg",
+          "name": "Duct Tape",
+          "text": "Duct tape is water resistant and allows leaks to be repaired."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/51KlcWdnU-L._AC_SX679_.jpg",
+          "name": "Hand Warmers",
+          "text": "In the case of a power outage, hand warmers may keep you warm."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/81Fv2e8rdTL._AC_SY879_.jpg",
+          "name": "Blankets",
+          "text": "In the case of a power outage or having to evacuate from home, blankets may keep you warm. Consider adding bedding to your disaster kit too."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/61BF97Cth3L._AC_SX679_.jpg",
+          "name": "Flotation Devices",
+          "text": "Flotation devices keep you buoyant and provide warmth."
+        }
 
-    ## PUT IN TOP 3 INTO "DISASTER TYPE"
 
-    For i in range(0, len(Top_Three)):
-        if Top_Three[i] == "Hurricane":
-            ## PUT IN ITEMS RELATED TO HURRICANE
-        elif Top_Three[i] == "":
-            A
-        elif Top_Three[i] == "":
-            A
-        elif Top_Three[i] == "":
-            A
-        elif Top_Three[i] == "":
-            A
-        elif Top_Three[i] == "":
-            A
-        elif Top_Three[i] == "":
-            A
+                    ]
+                })
+            if i[0] == "Flood_count":
+                Package.setdefault("disasterList", []).append({
+                    "disasterType": "Flood",
+                    "items": [
+                          {
+          "image": "https://m.media-amazon.com/images/I/613LtGZVGML._AC_UX679_.jpg",
+          "name": "Waterproof Ponchos",
+          "text": "Waterproof ponchos protect against wind and rain, and provide warmth."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/61566GUkLFL._AC_SX425_.jpg",
+          "name": "Waterproof Waste Bags",
+          "text": "Waste bags may both protect important items from moisture, and dispose of hazardous waste."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/61yiunepZ3L._AC_SX679_.jpg",
+          "name": "Hand Sanitizer",
+          "text": "Hand sanitizer protects you from diseases by killing germs on your skin."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/71k-8c9TTcL._AC_SX679_.jpg",
+          "name": "Rope",
+          "text": "Rope may be used as a sling in the case of injury, but can also be used to build a shelter by tying materials together."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/91LUqSEpIWL._AC_SX425_.jpg",
+          "name": "Duct Tape",
+          "text": "Duct tape is water resistant and allows leaks to be repaired."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/51KlcWdnU-L._AC_SX679_.jpg",
+          "name": "Hand Warmers",
+          "text": "In the case of a power outage, hand warmers may keep you warm."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/81Fv2e8rdTL._AC_SY879_.jpg",
+          "name": "Blankets",
+          "text": "In the case of a power outage or having to evacuate from home, blankets may keep you warm. Consider adding bedding to your disaster kit too."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/61BF97Cth3L._AC_SX679_.jpg",
+          "name": "Flotation Devices",
+          "text": "Flotation devices keep you buoyant and provide warmth."
+        }
 
-    ###
+
+                    ]
+                })
+            if i[0] == "Severe_Storm_count":
+                Package.setdefault("disasterList", []).append({
+                    "disasterType": "Storm",
+                    "items": [
+                          {
+          "image": "https://m.media-amazon.com/images/I/613LtGZVGML._AC_UX679_.jpg",
+          "name": "Waterproof Ponchos",
+          "text": "Waterproof ponchos protect against wind and rain, and provide warmth."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/61566GUkLFL._AC_SX425_.jpg",
+          "name": "Waterproof Waste Bags",
+          "text": "Waste bags may both protect important items from moisture, and dispose of hazardous waste."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/61yiunepZ3L._AC_SX679_.jpg",
+          "name": "Hand Sanitizer",
+          "text": "Hand sanitizer protects you from diseases by killing germs on your skin."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/71k-8c9TTcL._AC_SX679_.jpg",
+          "name": "Rope",
+          "text": "Rope may be used as a sling in the case of injury, but can also be used to build a shelter by tying materials together."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/91LUqSEpIWL._AC_SX425_.jpg",
+          "name": "Duct Tape",
+          "text": "Duct tape is water resistant and allows leaks to be repaired."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/51KlcWdnU-L._AC_SX679_.jpg",
+          "name": "Hand Warmers",
+          "text": "In the case of a power outage, hand warmers may keep you warm."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/81Fv2e8rdTL._AC_SY879_.jpg",
+          "name": "Blankets",
+          "text": "In the case of a power outage or having to evacuate from home, blankets may keep you warm. Consider adding bedding to your disaster kit too."
+        },
+        {
+          "image": "https://m.media-amazon.com/images/I/61BF97Cth3L._AC_SX679_.jpg",
+          "name": "Flotation Devices",
+          "text": "Flotation devices keep you buoyant and provide warmth."
+        }
+
+
+                    ]
+                })
+            if i[0] == "Earthquake_count":
+                Package.setdefault("disasterList", []).append({
+                    "disasterType": "Earthquake",
+                    "items": [
+                          {
+            "image": "https://m.media-amazon.com/images/I/81KqeAvPE5L._AC_SX425_.jpg",
+            "name": "Heavy Duty Work Gloves",
+            "text": "Heavy duty work gloves protect your hands from debris."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/41d+4dS7g+L._AC_.jpg",
+            "name": "Tube Tent",
+            "text": "A tube tent provides an immediate shelter in the case that you are unable to live in your home."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/61566GUkLFL._AC_SX425_.jpg",
+            "name": "Waterproof Waste Bags",
+            "text": "Waste bags may both protect important items from moisture, and dispose of hazardous waste."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/61yiunepZ3L._AC_SX679_.jpg",
+            "name": "Hand Sanitizer",
+            "text": "Hand sanitizer protects you from diseases by killing germs on your skin."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/71k-8c9TTcL._AC_SX679_.jpg",
+            "name": "Rope",
+            "text": "Rope may be used as a sling in the case of injury, but can also be used to build a shelter by tying materials together."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/91LUqSEpIWL._AC_SX425_.jpg",
+            "name": "Duct Tape",
+            "text": "Duct tape is water resistant and allows leaks to be repaired."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/41SCMEsIhBL._AC_SX425_.jpg",
+            "name": "Crescent and Pipe Wrenches",
+            "text": "After an earthquake, use the pipes to turn off utilities, especially gas."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/81Fv2e8rdTL._AC_SY879_.jpg",
+            "name": "Blankets",
+            "text": "In the case of a power outage or having to evacuate from home, blankets may keep you warm. Consider adding bedding to your disaster kit too."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/81c9+KSL52L._AC_SX425_.jpg",
+            "name": "Dust Masks",
+            "text": "Dust masks protect you from inhaling debris."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/512RBSoiCvL._AC_SY879_.jpg",
+            "name": "Fire Extinguisher",
+            "text": "Dislodged gas and electrical lines may also lead to fires. A fire extinguisher extinguishes a fire."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/81TCEnhTgKL._AC_SX679_.jpg",
+            "name": "Bicycle Helmet",
+            "text": "A helmet will protect your head from falling debris."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/81L8xflDwOL._AC_UX575_.jpg",
+            "name": "Sneakers",
+            "text": "Sturdy sneakers protect your feet from injury."
+          }
+
+
+                    ]
+                })
+            if i[0] == "Severe_Ice_Storm_count":
+                Package.setdefault("disasterList", []).append({
+                    "disasterType": "Ice Storm",
+                    "items": [
+                          {
+            "image": "https://m.media-amazon.com/images/I/71k-8c9TTcL._AC_SX679_.jpg",
+            "name": "Rope",
+            "text": "Rope may be used as a sling in the case of injury, but can also be used to build a shelter by tying materials together."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/51KlcWdnU-L._AC_SX679_.jpg",
+            "name": "Hand Warmers",
+            "text": "In the case of a power outage, hand warmers may keep you warm."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/81Fv2e8rdTL._AC_SY879_.jpg",
+            "name": "Blankets",
+            "text": "In the case of a power outage or having to evacuate from home, blankets may keep you warm. Consider adding bedding to your disaster kit too."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/71fqCQwdp0L._AC_UX679_.jpg",
+            "name": "Warm and Dry Clothes",
+            "text": "Extra clothing helps in keeping you warm."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/51LrI8n-fDL._AC_SX425_.jpg",
+            "name": "Windshield Scraper",
+            "text": "A windshield scraper assists with removing ice, frost, and snow."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/51Rber8gF3L._AC_SX679_.jpg",
+            "name": "Shovel",
+            "text": "A shovel assists with removing snow from your path."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/816lch3-Z6L._AC_SX679_.jpg",
+            "name": "Road Salt",
+            "text": "Road salt melts ice for safer travel. Sand may be used as a substitute."
+          }
+
+
+                    ]
+                })
+            if i[0] == "Coastal_Storm_count":
+                Package.setdefault("disasterList", []).append({
+                    "disasterType": "Coastal Storm",
+                    "items": [
+                          {
+            "image": "https://m.media-amazon.com/images/I/613LtGZVGML._AC_UX679_.jpg",
+            "name": "Waterproof Ponchos",
+            "text": "Waterproof ponchos protect against wind and rain, and provide warmth."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/71k-8c9TTcL._AC_SX679_.jpg",
+            "name": "Rope",
+            "text": "Rope may be used as a sling in the case of injury, but can also be used to build a shelter by tying materials together."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/61BF97Cth3L._AC_SX679_.jpg",
+            "name": "Flotation Devices",
+            "text": "Flotation devices keep you buoyant and provide warmth."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/71fqCQwdp0L._AC_UX679_.jpg",
+            "name": "Warm and Dry Clothes",
+            "text": "Extra clothing helps in keeping you warm."
+          }
+
+
+                    ]
+                })
+            if i[0] == "Fire_count":
+                Package.setdefault("disasterList", []).append({
+                    "disasterType": "Fire",
+                    "items": [
+                          {
+            "image": "https://m.media-amazon.com/images/I/81Fv2e8rdTL._AC_SY879_.jpg",
+            "name": "Blankets",
+            "text": "In the case of a power outage or having to evacuate from home, blankets may keep you warm. Consider adding bedding to your disaster kit too."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/81KqeAvPE5L._AC_SX425_.jpg",
+            "name": "Heavy Duty Work Gloves",
+            "text": "Heavy duty work gloves protect your hands from debris."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/81c9+KSL52L._AC_SX425_.jpg",
+            "name": "Dust Masks",
+            "text": "Dust masks protect you from inhaling debris."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/512RBSoiCvL._AC_SY879_.jpg",
+            "name": "Fire Extinguisher",
+            "text": "Dislodged gas and electrical lines may also lead to fires. A fire extinguisher extinguishes a fire."
+          }
+
+
+                    ]
+                })
+            if i[0] == "Snow_count":
+                Package.setdefault("disasterList", []).append({
+                    "disasterType": "Snow",
+                    "items": [
+                        {
+                "image": "https://m.media-amazon.com/images/I/71k-8c9TTcL._AC_SX679_.jpg",
+            "name": "Rope",
+            "text": "Rope may be used as a sling in the case of injury, but can also be used to build a shelter by tying materials together."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/51KlcWdnU-L._AC_SX679_.jpg",
+            "name": "Hand Warmers",
+            "text": "In the case of a power outage, hand warmers may keep you warm."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/81Fv2e8rdTL._AC_SY879_.jpg",
+            "name": "Blankets",
+            "text": "In the case of a power outage or having to evacuate from home, blankets may keep you warm. Consider adding bedding to your disaster kit too."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/71fqCQwdp0L._AC_UX679_.jpg",
+            "name": "Warm and Dry Clothes",
+            "text": "Extra clothing helps in keeping you warm."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/51LrI8n-fDL._AC_SX425_.jpg",
+            "name": "Windshield Scraper",
+            "text": "A windshield scraper assists with removing ice, frost, and snow."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/51Rber8gF3L._AC_SX679_.jpg",
+            "name": "Shovel",
+            "text": "A shovel assists with removing snow from your path."
+          },
+          {
+            "image": "https://m.media-amazon.com/images/I/816lch3-Z6L._AC_SX679_.jpg",
+            "name": "Road Salt",
+            "text": "Road salt melts ice for safer travel. Sand may be used as a substitute."
+          }
+                    ]
+                })
+                
+        Package['state'] = Selected_region
+        print(Package)
+        return jsonify(Package)
+    # ### NEED TO FILTER OUT FOR TOP 3
+    # ## PUT IN TOP 3 INTO "DISASTER TYPE"
+
+
+    # ###
 
 
 
-    ## ALSO PUT STATE INTO PACKAGE
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-elif response.ok != True:
-    print("unsuccessful")
-
-
+    # ## ALSO PUT STATE INTO PACKAGE
 
 
 if __name__ == "__main__":
