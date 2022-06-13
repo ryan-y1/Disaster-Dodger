@@ -1,4 +1,4 @@
-![My Image](OneHacks Logo.png)
+
 # Disaster Dodger
 
 Created for MLH's OneHacks II.
