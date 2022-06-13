@@ -7,13 +7,15 @@ Created for MLH's OneHacks II.
 
 Our app allows you to select the state you live in to find the most common natural disasters that occur in your area. It then recommends you a curated list of items you need to prepare yourself.
 
-#### Aim
-It is our aim to assist in safer evacuation during potential catastrophe by providing accurate, comprehensive, and accessible information concerning natural disaster preparation.
+## How we built it
+We build the frontend using React and Material UI and the backend with Flask. They communicate with each other through HTTP requests and the server fetches API data from OpenFema, a government API about natural disasters.
 
+#### Aim
+We always felt so powerless when other people across the globe were suffering from natural disasters. They're unpredictable and can ruin someone's entire livelihood. The 2021 Mansfield earthquake in Australia is a prime example where people don't necessarily prepare for one since, they don't occur much there. So when we remembered about the 5.9 magnitude earthquake striking, we knew we had to make something that can help everyone prepare and rebuild their community.
 
 ## Roadmap
 
-We have several future plans for this project.
+We understand that preventative measures aren't enough so we want to implement more reactionary ones. We understand that when a disaster does strike, people are panicked and don't know what to do, so we want to be able to find the nearest disaster shelter to your location. We also want to have a login feature where it tracks what items you have bought and sends you a reminder when your disaster kit has expired items so you can replenish it.
 
 #### Automatic Supplies Update
 
