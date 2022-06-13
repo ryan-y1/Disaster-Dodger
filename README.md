@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://github.com/ryan-y1/OneHacks-II-Disaster-Kit-Project/blob/main/DisasterDodgerLogo.png" width=50% height=50%/>
-  <iframe src="https://youtu.be/BWOvV83jYs4"/iframe>
+  https://youtu.be/BWOvV83jYs4
 </p>
 
 
