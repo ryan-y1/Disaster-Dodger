@@ -1,4 +1,3 @@
-![My Remote Image](https://www.dropbox.com/s/gdlht7gx7030kwy/OneHacks%20Logo.png?dl=0)
 
 # Disaster Dodger
 
