@@ -2,18 +2,17 @@ from flask import Flask, request, jsonify
 import requests
 from collections import Counter
 
-Package = {
-    "state": "",
-    "disasterList": [
-    ]
-}
-
-
 app = Flask(__name__)
 
 
 @app.route("/searchRegion", methods=['POST'])
 def searchRegion():
+
+    Package = {
+        "state": "",
+        "disasterList": [
+        ]
+    }
 
     highestThree = {
         "Hurricane_count": 0,
