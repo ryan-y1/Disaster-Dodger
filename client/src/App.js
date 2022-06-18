@@ -37,19 +37,19 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <section className='main'>
-          <div style={{
-            display: "inline-flex",
-            alignItems: "center"
-          }}>
-            <img
-              src={logo}
-              alt=''
-              className='logo'
-            />
-            <Typography variant='h1'>Disaster Dodger</Typography>
-          </div>
-          <SubmitRegion setTrigger={setInfoActivate} setInfo={setInfoFill} />
-        </section>
+        <div style={{
+          display: "inline-flex",
+          alignItems: "center"
+        }}>
+          <img
+            src={logo}
+            alt=''
+            className='logo'
+          />
+          <Typography variant='h1'>Disaster Dodger</Typography>
+        </div>
+        <SubmitRegion setTrigger={setInfoActivate} setInfo={setInfoFill} />
+      </section>
       <div className='app' id='info'>
         <DisasterInfo trigger={infoActivate} info={infoFill} />
       </div>

@@ -17,32 +17,32 @@ function TabPanel(props) {
       className="itemList"
     >
       {
-      value === index &&
-      (items.map(e => {
-        return <Card
-          sx={{
-            width: 350,
-            height: 450,
-            borderRadius: 5,
-            textAlign: "center",
-            margin: "1rem",
-            marginBottom: 15,
-            backgroundColor: "#D2E4C4",
-          }}
-          key={e.name}
-        >
-          <CardMedia
-            component='img'
-            height='194'
-            image={e.image}
-            alt='picture'
-          />
-          <CardContent>
-            <Typography variant='h5'>{e.name}</Typography>
-            <Typography variant='body2'>{e.text}</Typography>
-          </CardContent>
-        </Card>
-      }))}
+        value === index &&
+        (items.map(e => {
+          return <Card
+            sx={{
+              width: 350,
+              height: 450,
+              borderRadius: 5,
+              textAlign: "center",
+              margin: "1rem",
+              marginBottom: 15,
+              backgroundColor: "#D2E4C4",
+            }}
+            key={e.name}
+          >
+            <CardMedia
+              component='img'
+              height='194'
+              image={e.image}
+              alt='picture'
+            />
+            <CardContent>
+              <Typography variant='h5'>{e.name}</Typography>
+              <Typography variant='body2'>{e.text}</Typography>
+            </CardContent>
+          </Card>
+        }))}
     </div>
   )
 }
@@ -54,22 +54,22 @@ function DisasterInfo(props) {
       <Typography variant="h1">{props.info.state}</Typography>
       <Typography variant='h2'>Recommended Items to Prepare</Typography>
 
-      <Tabs textColor="black" value={tabVal} onChange={(e, val)=>setTabVal(val)}>
+      <Tabs textColor="black" value={tabVal} onChange={(e, val) => setTabVal(val)}>
         {
           props.info.disasterList.map(e => {
-            return <Tab sx={{backgroundColor: "#9ac6e3"}} label={e.disasterType} key={e.disasterType}/>
+            return <Tab sx={{ backgroundColor: "#9ac6e3" }} label={e.disasterType} key={e.disasterType} />
           })
         }
       </Tabs>
       {
         props.info.disasterList.map((e, i) => {
-          return <TabPanel items={e.items} value={tabVal} index={i} key={i}/>
+          return <TabPanel items={e.items} value={tabVal} index={i} key={i} />
         })
       }
     </div>
   ) : (
     <div className='preInfoDiv'>
-      <Typography variant="h2" sx={{textAlign: "center"}}>Pick a region to start Preparing!</Typography>
+      <Typography variant="h2" sx={{ textAlign: "center" }}>Pick a region to start Preparing!</Typography>
     </div>
   )
 }

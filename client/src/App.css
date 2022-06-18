@@ -6,11 +6,13 @@
   align-items: center;
   height: 75vh;
 }
+
 .main h1 {
   font-size: 100px;
   color: rgb(32, 32, 32);
   z-index: 2;
 }
+
 .main .form {
   width: 500px;
   display: flex;
@@ -22,10 +24,12 @@
   z-index: 2;
   box-shadow: 0 2px 5px rgb(32, 18, 9);
 }
+
 .main .logo {
   width: auto;
   height: 175px;
 }
+
 .app .preInfoDiv {
   background-color: #ffdfc1;
   display: flex;
@@ -38,6 +42,7 @@
   padding-left: 150px;
   padding-right: 150px;
 }
+
 .app .infoDiv {
   background-color: #ffdfc1;
   display: flex;
@@ -49,25 +54,30 @@
   padding-left: 150px;
   padding-right: 150px;
 }
+
 .app .infoDiv h2 {
   margin: 2rem;
 }
+
 .app .infoDiv p {
   margin: 2rem;
   font-size: larger;
 }
+
 .app .infoDiv .imgDiv {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   border-bottom: 4px solid black;
 }
+
 .app .infoDiv .imgDiv img {
   width: auto;
   height: 500px;
   padding: 1rem;
   object-fit: contain;
 }
+
 .app .infoDiv .itemList {
   width: 100%;
   display: flex;
@@ -75,11 +85,13 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .about {
   display: flex;
   flex-direction: column;
   background-color: antiquewhite;
 }
+
 .about div {
   display: flex;
   flex-direction: row;
@@ -88,6 +100,7 @@
   margin-top: 50px;
   margin-bottom: 50px;
 }
+
 .about div div {
   width: 30%;
   text-align: justify;
@@ -99,6 +112,7 @@
   padding: 2rem;
   box-shadow: 0 5px 5px rgb(48, 36, 12);
 }
+
 .about div div h2 {
   margin-top: 5rem;
   margin-bottom: 5rem;

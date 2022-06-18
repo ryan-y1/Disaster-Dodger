@@ -62,7 +62,7 @@ function SubmitRegion(props) {
     const handleChange = (event) => {
         setRegion(event.target.value)
     }
-    
+
     return (
         <div className='form'>
             <Select
@@ -80,25 +80,25 @@ function SubmitRegion(props) {
                     >{e}</MenuItem>
                 })}
             </Select>
-                <Button
-                    variant='contained'
-                    sx={{
-                        backgroundColor: "#e8e5e3"
-                    }}
-                    onClick={region !== '' ? async () => {
-                        const rawResponse = await fetch('/searchRegion', {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ region: region })
-                        }).catch(error => console.log(error))
-                        const response = await rawResponse.json();
-                        props.setInfo(response)
-                        props.setTrigger(true)
-                    } : () => { }}
-                >Search</Button>
+            <Button
+                variant='contained'
+                sx={{
+                    backgroundColor: "#e8e5e3"
+                }}
+                onClick={region !== '' ? async () => {
+                    const rawResponse = await fetch('/searchRegion', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ region: region })
+                    }).catch(error => console.log(error))
+                    const response = await rawResponse.json();
+                    props.setInfo(response)
+                    props.setTrigger(true)
+                } : () => { }}
+            >Search</Button>
         </div>
     )
 
