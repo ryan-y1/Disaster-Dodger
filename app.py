@@ -416,6 +416,7 @@ def searchRegion():
 @app.route('/')
 @cross_origin()
 def serve():
+    print(app.send_static_file('index.html'))
     return app.send_static_file('index.html')
 
 
