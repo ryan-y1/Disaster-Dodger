@@ -28,14 +28,12 @@ yarn-error.log*
 venv/
 .venv/
 dist/
-build/
 *.egg
 *.egg-info/
 .tox/
 .cache/
 .pytest_cache/
 .idea/
-docs/_build/
 .vscode
 
 # Coverage reports
