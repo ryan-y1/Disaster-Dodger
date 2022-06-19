@@ -1,11 +1,14 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import requests
 from collections import Counter
+from flask_cors import CORS, cross_origin
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='client/build', static_url_path='')
+CORS(app)
 
 
 @app.route("/searchRegion", methods=['POST'])
+@cross_origin()
 def searchRegion():
 
     Package = {
@@ -408,6 +411,12 @@ def searchRegion():
 
         Package['state'] = Selected_region
         return jsonify(Package)
+
+
+@app.route('/')
+@cross_origin()
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
 
 
 if __name__ == "__main__":
